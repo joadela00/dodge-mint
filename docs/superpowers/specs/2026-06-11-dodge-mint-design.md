@@ -146,6 +146,7 @@ The loop should update refs every frame and publish only the data React needs to
 
 - Rendered as simple circular objects
 - Spawn at random x positions at the top edge
+- Newly spawned obstacles must respect a minimum horizontal spacing from recently spawned obstacles
 - Move only downward
 - Removed once they leave the arena
 - Initial count and speed are intentionally gentle
@@ -164,24 +165,29 @@ Implementation approach:
 - Use helper functions such as `getSpawnInterval(elapsedSeconds)` and `getFallSpeed(elapsedSeconds)`.
 - Keep functions continuous or near-continuous so difficulty does not jump abruptly.
 - Clamp maximum spawn density and speed to maintain fairness.
+- If a sampled spawn position violates the recent-obstacle spacing rule, resample a limited number of times and then choose the best remaining valid position.
 
 ### Scoring
 
 - Score is based on elapsed survival time
 - `floor(elapsedMs / 1000)` for display
+- Internal runtime state keeps the full elapsed time value for all comparisons
+- High-score persistence and comparison use full elapsed precision rather than the floored display score
 - UI updates once per second for score are acceptable even if the loop tracks finer-grained time internally
 
 ### Collision
 
 - Use simple axis-aligned bounding box overlap for v1
 - Apply reduced effective bounds at roughly 82% scale for both entities before overlap checks
+- Add a short spawn protection period of about 1 second after the run starts
+- During spawn protection, collision checks are skipped entirely
 - Collision ends the run immediately and freezes updates
 
 ### Persistence
 
 - Store high score in `localStorage`
 - Read on initial client load
-- Update only when the current run beats the stored value
+- Update only when the current run's full elapsed time beats the stored value
 - Guard storage access so server render paths do not throw
 
 ## UI Design
@@ -227,13 +233,16 @@ Primary automated tests should target pure logic first:
 
 - Difficulty helpers return expected ranges over time
 - Collision helper respects forgiving hitbox scaling
-- Score conversion truncates fractional seconds
+- Spawn protection suppresses collisions during the opening window
+- Score display conversion truncates fractional seconds while high-score comparison preserves full precision
+- Obstacle spawn placement respects minimum horizontal spacing from recent spawns
 - High score storage helpers load and save safely
 
 Integration behavior to verify manually:
 
 - Hold left/right moves continuously and stops on release
 - Player cannot leave arena bounds
+- No collisions are processed during the opening spawn-protection period
 - Collision ends run immediately
 - Restart works repeatedly without refresh
 - High score persists across reload
