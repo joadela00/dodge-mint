@@ -23,6 +23,7 @@ body {
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   font-family: "Trebuchet MS", "Segoe UI", sans-serif;
   color: var(--text);
   background:
@@ -39,6 +40,7 @@ button {
 .shell {
   width: min(100vw, 440px);
   min-height: 100vh;
+  min-height: 100dvh;
   margin: 0 auto;
   padding: calc(16px + env(safe-area-inset-top)) 16px calc(20px + env(safe-area-inset-bottom));
   display: grid;
@@ -75,13 +77,14 @@ button {
 
 .arena-wrap {
   min-height: 0;
+  display: flex;
 }
 
 .arena {
   position: relative;
   width: 100%;
-  height: min(68vh, 640px);
-  min-height: 420px;
+  height: min(64dvh, 640px);
+  min-height: 320px;
   border-radius: 28px;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -243,9 +246,52 @@ button {
   .shell {
     padding-left: 12px;
     padding-right: 12px;
+    gap: 12px;
   }
 
   .arena {
-    min-height: 380px;
+    min-height: 280px;
+    height: min(58dvh, 520px);
+  }
+
+  .control-button {
+    min-height: 68px;
+    font-size: 16px;
+  }
+}
+
+@media (max-height: 760px) {
+  .shell {
+    gap: 12px;
+    padding-bottom: calc(14px + env(safe-area-inset-bottom));
+  }
+
+  .arena {
+    min-height: 260px;
+    height: min(54dvh, 460px);
+  }
+
+  .control-button {
+    min-height: 64px;
+  }
+}
+
+@media (max-height: 680px) {
+  .hud-card {
+    padding: 10px 12px;
+  }
+
+  .hud-card strong {
+    font-size: clamp(20px, 5vw, 26px);
+  }
+
+  .arena {
+    min-height: 220px;
+    height: min(50dvh, 400px);
+  }
+
+  .control-button {
+    min-height: 58px;
+    border-radius: 20px;
   }
 }
