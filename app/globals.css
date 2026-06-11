@@ -17,8 +17,96 @@ body {
 
 body {
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background:
+    radial-gradient(circle at top, #12324f, #07131f 60%),
+    #07131f;
+  overflow: hidden;
+  touch-action: manipulation;
 }
 
 button {
   font: inherit;
+}
+
+.shell {
+  width: min(100vw, 420px);
+  min-height: 100vh;
+  padding: 16px 16px 24px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 16px;
+}
+
+.hud {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+}
+
+.arena {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 320 / 520;
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.player,
+.obstacle {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.player {
+  border-radius: 14px;
+  background: #7df9c7;
+}
+
+.obstacle {
+  border-radius: 999px;
+  background: #ff846c;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.controls button {
+  min-height: 72px;
+  border: 0;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.16);
+  color: inherit;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 24px;
+  background: rgba(3, 10, 18, 0.74);
+}
+
+.overlay > div,
+.overlay {
+  backdrop-filter: blur(8px);
+}
+
+.overlay button {
+  min-width: 180px;
+  min-height: 52px;
+  border: 0;
+  border-radius: 999px;
+  background: #7df9c7;
+  color: #062018;
+  font-weight: 700;
 }

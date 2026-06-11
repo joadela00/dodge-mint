@@ -18,7 +18,7 @@ vi.mock("@/components/game/useDodgeMintGame", () => ({
 test("idle view shows current best score and start button", () => {
   render(<GameShell />);
 
-  expect(screen.getByText(/best: 12/i)).toBeInTheDocument();
+  expect(screen.getAllByText(/best: 12/i)).toHaveLength(2);
   expect(
     screen.getByRole("button", { name: /start game/i }),
   ).toBeInTheDocument();
