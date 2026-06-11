@@ -45,7 +45,7 @@ button {
   padding: calc(16px + env(safe-area-inset-top)) 16px calc(20px + env(safe-area-inset-bottom));
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: 16px;
+  gap: 8px;
 }
 
 .hud {
@@ -246,7 +246,7 @@ button {
   .shell {
     padding-left: 12px;
     padding-right: 12px;
-    gap: 12px;
+    gap: 6px;
   }
 
   .arena {
@@ -262,7 +262,7 @@ button {
 
 @media (max-height: 760px) {
   .shell {
-    gap: 12px;
+    gap: 6px;
     padding-bottom: calc(14px + env(safe-area-inset-bottom));
   }
 
