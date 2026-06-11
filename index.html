@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+    <title>Dodge Mint</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hud">
+        <div class="hud-card">
+          <span class="hud-label">SCORE</span>
+          <strong id="score">0</strong>
+        </div>
+        <div class="hud-card">
+          <span class="hud-label">BEST</span>
+          <strong id="high-score">0</strong>
+        </div>
+      </header>
+
+      <section class="arena-wrap">
+        <div id="arena" class="arena" aria-label="Game arena">
+          <div id="player" class="player"></div>
+          <div id="obstacles" class="obstacles"></div>
+
+          <div id="overlay" class="overlay">
+            <div class="overlay-card">
+              <p class="eyebrow">Dodge Mint</p>
+              <h1 id="overlay-title">READY?</h1>
+              <p id="overlay-body" class="overlay-body">
+                왼쪽과 오른쪽 버튼을 누른 채로 이동해서 떨어지는 장애물을 피하세요.
+              </p>
+              <dl class="overlay-stats">
+                <div>
+                  <dt>현재 점수</dt>
+                  <dd id="final-score">0</dd>
+                </div>
+                <div>
+                  <dt>최고 기록</dt>
+                  <dd id="final-high-score">0</dd>
+                </div>
+              </dl>
+              <button id="start-button" class="start-button" type="button">게임 시작</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Move controls">
+        <button id="left-button" class="control-button" type="button" aria-label="Move left">
+          LEFT
+        </button>
+        <button id="right-button" class="control-button" type="button" aria-label="Move right">
+          RIGHT
+        </button>
+      </section>
+    </main>
+
+    <script src="./game.js"></script>
+  </body>
+</html>
