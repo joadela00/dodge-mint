@@ -203,6 +203,23 @@ button {
   font-weight: 700;
 }
 
+.best-badge {
+  display: inline-block;
+  margin: 0 0 16px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(140, 240, 198, 0.18);
+  border: 1px solid rgba(140, 240, 198, 0.4);
+  color: var(--mint);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.best-badge-hidden {
+  display: none;
+}
+
 .start-button {
   width: 100%;
   min-height: 56px;
