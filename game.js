@@ -38,6 +38,11 @@
     obstacleId: 1,
     arenaWidth: 0,
     arenaHeight: 0,
+    heldLeft: false,
+    heldRight: false,
+    lastHeldDirection: 0,
+    displayScore: -1,
+    displayHighScore: -1,
   };
 
   function loadHighScoreMs() {
@@ -67,14 +72,21 @@
     return Math.floor(elapsedMs / 1000);
   }
 
-  function updateScoreDisplays() {
+  function updateScoreDisplays(force) {
     const displayScore = getDisplayScore(state.elapsedMs);
     const displayHighScore = getDisplayScore(state.highScoreMs);
 
-    scoreEl.textContent = String(displayScore);
-    highScoreEl.textContent = String(displayHighScore);
-    finalScoreEl.textContent = String(displayScore);
-    finalHighScoreEl.textContent = String(displayHighScore);
+    if (force || displayScore !== state.displayScore) {
+      state.displayScore = displayScore;
+      scoreEl.textContent = String(displayScore);
+      finalScoreEl.textContent = String(displayScore);
+    }
+
+    if (force || displayHighScore !== state.displayHighScore) {
+      state.displayHighScore = displayHighScore;
+      highScoreEl.textContent = String(displayHighScore);
+      finalHighScoreEl.textContent = String(displayHighScore);
+    }
   }
 
   function syncArenaMetrics() {
@@ -169,11 +181,11 @@
   }
 
   function renderPlayer() {
-    playerEl.style.transform = "translate(" + state.playerX + "px, " + state.playerY + "px)";
+    playerEl.style.transform = "translate3d(" + state.playerX + "px, " + state.playerY + "px, 0)";
   }
 
   function renderObstacle(obstacle) {
-    obstacle.element.style.transform = "translate(" + obstacle.x + "px, " + obstacle.y + "px)";
+    obstacle.element.style.transform = "translate3d(" + obstacle.x + "px, " + obstacle.y + "px, 0)";
   }
 
   function clearObstacles() {
@@ -218,6 +230,30 @@
     }
   }
 
+  function syncDirectionFromHeld() {
+    if (state.phase !== "playing") {
+      state.direction = 0;
+      return;
+    }
+
+    if (state.heldLeft && state.heldRight) {
+      state.direction = state.lastHeldDirection;
+      return;
+    }
+
+    if (state.heldLeft) {
+      state.direction = -1;
+      return;
+    }
+
+    if (state.heldRight) {
+      state.direction = 1;
+      return;
+    }
+
+    state.direction = 0;
+  }
+
   function startGame() {
     cancelLoop();
     syncArenaMetrics();
@@ -227,9 +263,12 @@
     state.spawnAccumulator = 0;
     state.lastTimestamp = null;
     state.recentSpawnXs = [];
+    state.heldLeft = false;
+    state.heldRight = false;
+    state.lastHeldDirection = 0;
     state.playerX = (state.arenaWidth - PLAYER_SIZE) / 2;
     clearObstacles();
-    updateScoreDisplays();
+    updateScoreDisplays(true);
     renderPlayer();
     setControlState(false);
     setOverlay("playing", false);
@@ -240,8 +279,11 @@
     const isNewBest = state.elapsedMs > state.highScoreMs;
 
     state.phase = "gameOver";
+    state.direction = 0;
+    state.heldLeft = false;
+    state.heldRight = false;
     saveHighScoreMs(state.elapsedMs);
-    updateScoreDisplays();
+    updateScoreDisplays(true);
     setControlState(true);
     setOverlay("gameOver", isNewBest);
     cancelLoop();
@@ -329,7 +371,7 @@
     }
 
     updateObstacles(deltaSeconds);
-    updateScoreDisplays();
+    updateScoreDisplays(false);
 
     if (checkCollision()) {
       endGame();
@@ -339,56 +381,82 @@
     state.rafId = requestAnimationFrame(tick);
   }
 
-  function setDirection(direction) {
-    if (state.phase !== "playing") {
-      return;
-    }
-    state.direction = direction;
-  }
-
   function bindControl(button, direction) {
+    const heldKey = direction < 0 ? "heldLeft" : "heldRight";
+    let activePointerId = null;
+
+    function release(pointerId) {
+      if (pointerId !== undefined && activePointerId !== pointerId) {
+        return;
+      }
+
+      state[heldKey] = false;
+      syncDirectionFromHeld();
+      button.classList.remove("active");
+
+      if (pointerId !== undefined && button.hasPointerCapture && button.hasPointerCapture(pointerId)) {
+        button.releasePointerCapture(pointerId);
+      }
+
+      activePointerId = null;
+    }
+
     button.addEventListener("pointerdown", function (event) {
+      if (activePointerId !== null) {
+        return;
+      }
+
       event.preventDefault();
-      setDirection(direction);
+      activePointerId = event.pointerId;
+      state[heldKey] = true;
+      state.lastHeldDirection = direction;
+      syncDirectionFromHeld();
       button.classList.add("active");
+
+      if (button.setPointerCapture) {
+        button.setPointerCapture(event.pointerId);
+      }
     });
 
-    const release = function () {
-      if (state.direction === direction) {
-        setDirection(0);
-      }
-      button.classList.remove("active");
-    };
+    button.addEventListener("pointerup", function (event) {
+      release(event.pointerId);
+    });
 
-    button.addEventListener("pointerup", release);
-    button.addEventListener("pointercancel", release);
-    button.addEventListener("pointerleave", release);
+    button.addEventListener("pointercancel", function (event) {
+      release(event.pointerId);
+    });
+
+    button.addEventListener("lostpointercapture", function (event) {
+      release(event.pointerId);
+    });
   }
 
   function bindKeyboard() {
     window.addEventListener("keydown", function (event) {
       if (event.key === "ArrowLeft") {
-        setDirection(-1);
+        state.heldLeft = true;
+        state.lastHeldDirection = -1;
         leftButtonEl.classList.add("active");
+        syncDirectionFromHeld();
       }
       if (event.key === "ArrowRight") {
-        setDirection(1);
+        state.heldRight = true;
+        state.lastHeldDirection = 1;
         rightButtonEl.classList.add("active");
+        syncDirectionFromHeld();
       }
     });
 
     window.addEventListener("keyup", function (event) {
-      if (event.key === "ArrowLeft" && state.direction === -1) {
-        setDirection(0);
-      }
-      if (event.key === "ArrowRight" && state.direction === 1) {
-        setDirection(0);
-      }
       if (event.key === "ArrowLeft") {
+        state.heldLeft = false;
         leftButtonEl.classList.remove("active");
+        syncDirectionFromHeld();
       }
       if (event.key === "ArrowRight") {
+        state.heldRight = false;
         rightButtonEl.classList.remove("active");
+        syncDirectionFromHeld();
       }
     });
   }
@@ -396,7 +464,7 @@
   function init() {
     syncArenaMetrics();
     renderPlayer();
-    updateScoreDisplays();
+    updateScoreDisplays(true);
     setOverlay("idle", false);
     setControlState(true);
     bindControl(leftButtonEl, -1);
