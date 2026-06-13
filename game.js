@@ -210,9 +210,9 @@
     setBestBadgeVisible(Boolean(isNewBest));
 
     if (mode === "idle") {
-      overlayTitleEl.textContent = "READY?";
-      overlayBodyEl.textContent = "왼쪽과 오른쪽 버튼을 누른 채로 이동해서 떨어지는 장애물을 피하세요.";
-      startButtonEl.textContent = "게임 시작";
+      overlayTitleEl.textContent = "DODGE MINT";
+      overlayBodyEl.textContent = "좌우 홀드로 피하고 최고기록을 깨세요.";
+      startButtonEl.textContent = "START RUN";
     } else {
       overlayTitleEl.textContent = "GAME OVER";
       overlayBodyEl.textContent = "최대한 오래 버티면서 최고 기록을 갱신해 보세요.";
