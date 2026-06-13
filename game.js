@@ -201,12 +201,14 @@
 
   function setOverlay(mode, isNewBest) {
     if (mode === "playing") {
+      overlayEl.dataset.phase = "playing";
       setBestBadgeVisible(false);
       overlayEl.classList.add("hidden");
       return;
     }
 
     overlayEl.classList.remove("hidden");
+    overlayEl.dataset.phase = mode;
     setBestBadgeVisible(Boolean(isNewBest));
 
     if (mode === "idle") {
@@ -215,8 +217,8 @@
       startButtonEl.textContent = "START RUN";
     } else {
       overlayTitleEl.textContent = "GAME OVER";
-      overlayBodyEl.textContent = "최대한 오래 버티면서 최고 기록을 갱신해 보세요.";
-      startButtonEl.textContent = "다시 시작";
+      overlayBodyEl.textContent = "이번 기록을 넘어서 다시 버텨보세요.";
+      startButtonEl.textContent = "RUN AGAIN";
     }
   }
 
@@ -359,8 +361,7 @@
 
     state.playerX = clamp(
       state.playerX + state.direction * PLAYER_SPEED * deltaSeconds,
-      0,
-      state.arenaWidth - PLAYER_SIZE,
+      0,      state.arenaWidth - PLAYER_SIZE,
     );
     renderPlayer();
 
