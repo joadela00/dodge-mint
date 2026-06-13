@@ -15,6 +15,7 @@
   const overlayEl = document.getElementById("overlay");
   const overlayTitleEl = document.getElementById("overlay-title");
   const overlayBodyEl = document.getElementById("overlay-body");
+  const bestBadgeEl = document.getElementById("best-badge");
   const startButtonEl = document.getElementById("start-button");
   const arenaEl = document.getElementById("arena");
   const playerEl = document.getElementById("player");
@@ -182,13 +183,19 @@
     state.obstacles = [];
   }
 
-  function setOverlay(mode) {
+  function setBestBadgeVisible(visible) {
+    bestBadgeEl.classList.toggle("best-badge-hidden", !visible);
+  }
+
+  function setOverlay(mode, isNewBest) {
     if (mode === "playing") {
+      setBestBadgeVisible(false);
       overlayEl.classList.add("hidden");
       return;
     }
 
     overlayEl.classList.remove("hidden");
+    setBestBadgeVisible(Boolean(isNewBest));
 
     if (mode === "idle") {
       overlayTitleEl.textContent = "READY?";
@@ -225,16 +232,18 @@
     updateScoreDisplays();
     renderPlayer();
     setControlState(false);
-    setOverlay("playing");
+    setOverlay("playing", false);
     state.rafId = requestAnimationFrame(tick);
   }
 
   function endGame() {
+    const isNewBest = state.elapsedMs > state.highScoreMs;
+
     state.phase = "gameOver";
     saveHighScoreMs(state.elapsedMs);
     updateScoreDisplays();
     setControlState(true);
-    setOverlay("gameOver");
+    setOverlay("gameOver", isNewBest);
     cancelLoop();
   }
 
@@ -388,7 +397,7 @@
     syncArenaMetrics();
     renderPlayer();
     updateScoreDisplays();
-    setOverlay("idle");
+    setOverlay("idle", false);
     setControlState(true);
     bindControl(leftButtonEl, -1);
     bindControl(rightButtonEl, 1);
