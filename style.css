@@ -227,6 +227,36 @@ button {
   font-weight: 700;
 }
 
+.overlay[data-phase="gameOver"] .overlay-card {
+  background:
+    radial-gradient(circle at top, rgba(255, 124, 102, 0.18), transparent 42%),
+    rgba(12, 16, 24, 0.9);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.42);
+}
+
+.overlay[data-phase="gameOver"] .overlay-card::before {
+  background: linear-gradient(90deg, rgba(255, 124, 102, 0), rgba(255, 124, 102, 0.95), rgba(255, 124, 102, 0));
+}
+
+.overlay[data-phase="gameOver"] .eyebrow {
+  color: #ffb2a3;
+}
+
+.overlay[data-phase="gameOver"] .overlay-card h1 {
+  text-shadow: 0 10px 28px rgba(255, 124, 102, 0.2);
+}
+
+.overlay[data-phase="gameOver"] .overlay-stats div:first-child {
+  background: rgba(255, 124, 102, 0.14);
+  border-color: rgba(255, 124, 102, 0.28);
+  transform: scale(1.02);
+}
+
+.overlay[data-phase="gameOver"] .overlay-stats div:first-child dd {
+  font-size: 34px;
+  color: #fff4f0;
+}
+
 .best-badge {
   display: inline-block;
   margin: 0 0 16px;
@@ -238,6 +268,13 @@ button {
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.18em;
+}
+
+.overlay[data-phase="gameOver"] .best-badge {
+  background: rgba(255, 196, 120, 0.16);
+  border-color: rgba(255, 196, 120, 0.38);
+  color: #ffd88b;
+  box-shadow: 0 10px 24px rgba(255, 196, 120, 0.14);
 }
 
 .best-badge-hidden {
@@ -254,6 +291,12 @@ button {
   font-weight: 900;
   letter-spacing: 0.12em;
   box-shadow: 0 14px 28px rgba(140, 240, 198, 0.22);
+}
+
+.overlay[data-phase="gameOver"] .start-button {
+  background: linear-gradient(180deg, #ff9f82, #ff7c66);
+  color: #2a0d08;
+  box-shadow: 0 16px 30px rgba(255, 124, 102, 0.24);
 }
 
 .controls {
