@@ -1,13 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@700;800;900&display=swap");
+
 :root {
-  --bg-top: #16324d;
-  --bg-bottom: #05101c;
-  --panel: rgba(255, 255, 255, 0.1);
-  --panel-strong: rgba(255, 255, 255, 0.16);
-  --line: rgba(255, 255, 255, 0.12);
-  --text: #eef7ff;
-  --muted: rgba(238, 247, 255, 0.74);
-  --mint: #8cf0c6;
+  --sky-top: #8fd7ff;
+  --sky-bottom: #d7f2ff;
+  --frame-top: #20486f;
+  --frame-bottom: #082038;
+  --panel-top: rgba(122, 162, 196, 0.72);
+  --panel-bottom: rgba(85, 125, 162, 0.72);
+  --panel-line: rgba(255, 255, 255, 0.24);
+  --text: #f7fbff;
+  --muted: rgba(241, 248, 255, 0.8);
+  --mint: #93f2cb;
+  --mint-deep: #55d2a5;
   --coral: #ff7c66;
+  --coral-soft: #ffab92;
+  --navy-shadow: rgba(5, 20, 36, 0.3);
 }
 
 * {
@@ -24,12 +31,23 @@ body {
 body {
   min-height: 100vh;
   min-height: 100dvh;
-  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  font-family: "Nunito", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top, rgba(140, 240, 198, 0.12), transparent 30%),
-    linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+    radial-gradient(circle at 50% -10%, rgba(255, 255, 255, 0.8), transparent 34%),
+    linear-gradient(180deg, var(--sky-top), var(--sky-bottom));
   overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 16% 14%, rgba(255, 255, 255, 0.44), transparent 0 9%),
+    radial-gradient(circle at 80% 12%, rgba(255, 255, 255, 0.4), transparent 0 10%),
+    radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.22), transparent 0 7%);
+  pointer-events: none;
 }
 
 button {
@@ -38,14 +56,17 @@ button {
 }
 
 .shell {
+  position: relative;
   width: min(100vw, 440px);
   min-height: 100vh;
   min-height: 100dvh;
   margin: 0 auto;
-  padding: calc(16px + env(safe-area-inset-top)) 16px calc(20px + env(safe-area-inset-bottom));
+  padding: calc(14px + env(safe-area-inset-top)) 16px calc(18px + env(safe-area-inset-bottom));
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: 8px;
+  gap: 6px;
+  background: linear-gradient(180deg, var(--frame-top), var(--frame-bottom));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .hud {
@@ -55,29 +76,45 @@ button {
 }
 
 .hud-card {
-  padding: 13px 15px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(12px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  position: relative;
+  padding: 14px 18px 13px;
+  border: 1px solid var(--panel-line);
+  border-radius: 24px;
+  background: linear-gradient(180deg, var(--panel-top), var(--panel-bottom));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -10px 24px rgba(15, 44, 70, 0.16),
+    0 10px 18px rgba(4, 17, 31, 0.12);
+}
+
+.hud-card::after {
+  content: "";
+  position: absolute;
+  inset: 2px 2px auto 2px;
+  height: 44%;
+  border-radius: 21px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0));
+  pointer-events: none;
 }
 
 .hud-label {
   display: block;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  color: rgba(238, 247, 255, 0.82);
+  font-family: "Fredoka", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  color: rgba(240, 248, 255, 0.88);
 }
 
 .hud-card strong {
   display: block;
   margin-top: 8px;
+  font-family: "Fredoka", sans-serif;
   font-size: clamp(28px, 7vw, 36px);
   line-height: 1;
   letter-spacing: 0.02em;
   color: #ffffff;
+  text-shadow: 0 3px 0 rgba(21, 46, 74, 0.28);
 }
 
 .arena-wrap {
@@ -90,13 +127,15 @@ button {
   width: 100%;
   height: min(64dvh, 640px);
   min-height: 320px;
-  border-radius: 28px;
+  border-radius: 30px;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.06), transparent 40%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    radial-gradient(circle at 50% 0%, rgba(103, 177, 232, 0.13), transparent 28%),
+    linear-gradient(180deg, rgba(42, 74, 110, 0.92), rgba(14, 34, 57, 0.96));
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -20px 50px rgba(3, 12, 22, 0.24);
 }
 
 .arena::before {
@@ -104,10 +143,19 @@ button {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(transparent 96%, rgba(255, 255, 255, 0.05) 96%),
-    linear-gradient(90deg, transparent 96%, rgba(255, 255, 255, 0.04) 96%);
+    linear-gradient(transparent 96%, rgba(255, 255, 255, 0.045) 96%),
+    linear-gradient(90deg, transparent 96%, rgba(255, 255, 255, 0.035) 96%);
   background-size: 100% 44px, 44px 100%;
-  opacity: 0.35;
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+.arena::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
   pointer-events: none;
 }
 
@@ -124,7 +172,7 @@ button {
 .player {
   width: 44px;
   height: 44px;
-  background: url("./assets/player-flying.svg") center / 156% 156% no-repeat;
+  background: url("./assets/player-flying.svg") center / 160% 160% no-repeat;
   filter: drop-shadow(0 12px 18px rgba(12, 32, 24, 0.26));
 }
 
@@ -136,9 +184,11 @@ button {
 .obstacle {
   border-radius: 999px;
   background:
-    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.28), transparent 36%),
-    linear-gradient(180deg, #ff9f82, var(--coral));
-  box-shadow: 0 10px 24px rgba(255, 124, 102, 0.18);
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.52), transparent 34%),
+    linear-gradient(180deg, var(--coral-soft), var(--coral));
+  box-shadow:
+    inset 0 -6px 10px rgba(160, 52, 34, 0.18),
+    0 10px 20px rgba(255, 124, 102, 0.2);
 }
 
 .overlay {
@@ -147,7 +197,7 @@ button {
   display: grid;
   place-items: center;
   padding: 18px;
-  background: rgba(5, 12, 20, 0.52);
+  background: rgba(12, 30, 49, 0.42);
   backdrop-filter: blur(8px);
   z-index: 5;
 }
@@ -160,13 +210,15 @@ button {
   position: relative;
   width: min(100%, 332px);
   padding: 24px 18px 18px;
-  border-radius: 28px;
+  border-radius: 30px;
   background:
-    radial-gradient(circle at top, rgba(140, 240, 198, 0.12), transparent 42%),
-    rgba(10, 20, 31, 0.86);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.22), transparent 46%),
+    linear-gradient(180deg, rgba(65, 103, 142, 0.96), rgba(31, 60, 92, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.14);
   text-align: center;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.34);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 24px 56px rgba(0, 0, 0, 0.28);
   overflow: hidden;
 }
 
@@ -175,25 +227,27 @@ button {
   position: absolute;
   inset: 0 auto auto 0;
   width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(140, 240, 198, 0), rgba(140, 240, 198, 0.95), rgba(140, 240, 198, 0));
-  opacity: 0.9;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0));
+  opacity: 0.85;
 }
 
 .eyebrow {
   margin: 0 0 12px;
+  font-family: "Fredoka", sans-serif;
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: 0.28em;
-  color: var(--mint);
+  color: #c5ffea;
 }
 
 .overlay-card h1 {
   margin: 0;
+  font-family: "Fredoka", sans-serif;
   font-size: clamp(34px, 10vw, 50px);
   line-height: 0.92;
-  letter-spacing: 0.04em;
-  text-shadow: 0 10px 30px rgba(140, 240, 198, 0.18);
+  letter-spacing: 0.03em;
+  text-shadow: 0 5px 0 rgba(21, 46, 74, 0.26);
 }
 
 .overlay-body {
@@ -201,7 +255,8 @@ button {
   max-width: 18ch;
   line-height: 1.45;
   font-size: 15px;
-  color: rgba(238, 247, 255, 0.82);
+  font-weight: 800;
+  color: rgba(246, 250, 255, 0.82);
 }
 
 .overlay-stats {
@@ -213,9 +268,10 @@ button {
 
 .overlay-stats div {
   padding: 12px 10px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .overlay-stats dt {
@@ -225,38 +281,34 @@ button {
 
 .overlay-stats dd {
   margin: 8px 0 0;
+  font-family: "Fredoka", sans-serif;
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .overlay[data-phase="gameOver"] .overlay-card {
   background:
-    radial-gradient(circle at top, rgba(255, 124, 102, 0.18), transparent 42%),
-    rgba(12, 16, 24, 0.9);
-  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.42);
-}
-
-.overlay[data-phase="gameOver"] .overlay-card::before {
-  background: linear-gradient(90deg, rgba(255, 124, 102, 0), rgba(255, 124, 102, 0.95), rgba(255, 124, 102, 0));
+    radial-gradient(circle at top, rgba(255, 196, 120, 0.2), transparent 42%),
+    linear-gradient(180deg, rgba(76, 97, 140, 0.98), rgba(34, 49, 78, 0.98));
 }
 
 .overlay[data-phase="gameOver"] .eyebrow {
-  color: #ffb2a3;
+  color: #ffe0b4;
 }
 
 .overlay[data-phase="gameOver"] .overlay-card h1 {
-  text-shadow: 0 10px 28px rgba(255, 124, 102, 0.2);
+  text-shadow: 0 5px 0 rgba(54, 26, 20, 0.18);
 }
 
 .overlay[data-phase="gameOver"] .overlay-stats div:first-child {
-  background: rgba(255, 124, 102, 0.14);
-  border-color: rgba(255, 124, 102, 0.28);
+  background: rgba(255, 124, 102, 0.16);
+  border-color: rgba(255, 178, 152, 0.26);
   transform: scale(1.02);
 }
 
 .overlay[data-phase="gameOver"] .overlay-stats div:first-child dd {
   font-size: 34px;
-  color: #fff4f0;
+  color: #fff5f1;
 }
 
 .best-badge {
@@ -264,19 +316,19 @@ button {
   margin: 0 0 16px;
   padding: 8px 14px;
   border-radius: 999px;
-  background: rgba(140, 240, 198, 0.18);
-  border: 1px solid rgba(140, 240, 198, 0.4);
-  color: var(--mint);
+  background: rgba(147, 242, 203, 0.22);
+  border: 1px solid rgba(147, 242, 203, 0.4);
+  color: #d9fff0;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.18em;
 }
 
 .overlay[data-phase="gameOver"] .best-badge {
-  background: rgba(255, 196, 120, 0.16);
-  border-color: rgba(255, 196, 120, 0.38);
-  color: #ffd88b;
-  box-shadow: 0 10px 24px rgba(255, 196, 120, 0.14);
+  background: rgba(255, 209, 132, 0.18);
+  border-color: rgba(255, 209, 132, 0.34);
+  color: #ffe6a8;
+  box-shadow: 0 10px 24px rgba(255, 196, 120, 0.12);
 }
 
 .best-badge-hidden {
@@ -285,20 +337,27 @@ button {
 
 .start-button {
   width: 100%;
-  min-height: 58px;
+  min-height: 60px;
   border: 0;
   border-radius: 999px;
-  background: linear-gradient(180deg, #9af8d0, #67ddb0);
-  color: #072015;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  box-shadow: 0 14px 28px rgba(140, 240, 198, 0.22);
+  background: linear-gradient(180deg, #b2ffd8, #6ce2b3);
+  color: #0f3f2c;
+  font-family: "Fredoka", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -8px 12px rgba(46, 147, 109, 0.18),
+    0 16px 28px rgba(140, 240, 198, 0.22);
 }
 
 .overlay[data-phase="gameOver"] .start-button {
-  background: linear-gradient(180deg, #ff9f82, #ff7c66);
-  color: #2a0d08;
-  box-shadow: 0 16px 30px rgba(255, 124, 102, 0.24);
+  background: linear-gradient(180deg, #ffb094, #ff7c66);
+  color: #42140c;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -8px 12px rgba(176, 64, 36, 0.18),
+    0 16px 30px rgba(255, 124, 102, 0.24);
 }
 
 .controls {
@@ -308,21 +367,29 @@ button {
 }
 
 .control-button {
-  min-height: 78px;
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  background: var(--panel-strong);
-  backdrop-filter: blur(10px);
+  min-height: 80px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 26px;
+  background: linear-gradient(180deg, rgba(80, 97, 118, 0.96), rgba(59, 73, 91, 0.98));
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -10px 16px rgba(26, 34, 46, 0.26),
+    0 12px 18px rgba(6, 18, 33, 0.18);
+  font-family: "Fredoka", sans-serif;
   font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   touch-action: none;
   user-select: none;
 }
 
 .control-button.active {
-  background: rgba(140, 240, 198, 0.28);
-  border-color: rgba(140, 240, 198, 0.36);
+  background: linear-gradient(180deg, rgba(117, 176, 205, 0.98), rgba(88, 145, 180, 0.98));
+  border-color: rgba(184, 231, 255, 0.44);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -10px 16px rgba(32, 72, 104, 0.22),
+    0 12px 18px rgba(6, 18, 33, 0.18);
 }
 
 .control-button:disabled {
