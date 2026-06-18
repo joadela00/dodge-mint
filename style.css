@@ -1,15 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@700;800;900&display=swap");
 
 :root {
-  --sky-top: #8fd7ff;
-  --sky-bottom: #d7f2ff;
-  --frame-top: #20486f;
-  --frame-bottom: #082038;
-  --panel-top: rgba(122, 162, 196, 0.72);
-  --panel-bottom: rgba(85, 125, 162, 0.72);
-  --panel-line: rgba(255, 255, 255, 0.24);
+  --sky-top: #0f2740;
+  --sky-bottom: #061523;
+  --frame-top: #17395b;
+  --frame-bottom: #071728;
+  --panel-top: rgba(98, 132, 164, 0.54);
+  --panel-bottom: rgba(56, 87, 117, 0.68);
+  --panel-line: rgba(255, 255, 255, 0.18);
   --text: #f7fbff;
-  --muted: rgba(241, 248, 255, 0.8);
+  --muted: rgba(230, 241, 250, 0.76);
   --mint: #93f2cb;
   --mint-deep: #55d2a5;
   --coral: #ff7c66;
@@ -35,7 +35,7 @@ body {
   font-family: "Nunito", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at 50% -10%, rgba(255, 255, 255, 0.8), transparent 34%),
+    radial-gradient(circle at 50% -18%, rgba(120, 202, 255, 0.14), transparent 34%),
     linear-gradient(180deg, var(--sky-top), var(--sky-bottom));
   overflow: hidden;
 }
@@ -45,9 +45,9 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at 16% 14%, rgba(255, 255, 255, 0.44), transparent 0 9%),
-    radial-gradient(circle at 80% 12%, rgba(255, 255, 255, 0.4), transparent 0 10%),
-    radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.22), transparent 0 7%);
+    radial-gradient(circle at 16% 14%, rgba(153, 244, 214, 0.08), transparent 0 10%),
+    radial-gradient(circle at 80% 12%, rgba(255, 255, 255, 0.06), transparent 0 11%),
+    radial-gradient(circle at 28% 22%, rgba(140, 197, 255, 0.08), transparent 0 8%);
   pointer-events: none;
 }
 
@@ -67,7 +67,7 @@ button {
   grid-template-rows: auto 1fr auto;
   gap: 6px;
   background: linear-gradient(180deg, var(--frame-top), var(--frame-bottom));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .hud {
@@ -83,9 +83,9 @@ button {
   border-radius: 24px;
   background: linear-gradient(180deg, var(--panel-top), var(--panel-bottom));
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.28),
-    inset 0 -10px 24px rgba(15, 44, 70, 0.16),
-    0 10px 18px rgba(4, 17, 31, 0.12);
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -10px 24px rgba(12, 33, 54, 0.22),
+    0 10px 18px rgba(4, 17, 31, 0.14);
 }
 
 .hud-card::after {
@@ -94,7 +94,7 @@ button {
   inset: 2px 2px auto 2px;
   height: 44%;
   border-radius: 21px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
   pointer-events: none;
 }
 
@@ -104,7 +104,7 @@ button {
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.32em;
-  color: rgba(240, 248, 255, 0.88);
+  color: rgba(240, 248, 255, 0.82);
 }
 
 .hud-card strong {
@@ -115,7 +115,7 @@ button {
   line-height: 1;
   letter-spacing: 0.02em;
   color: #ffffff;
-  text-shadow: 0 3px 0 rgba(21, 46, 74, 0.28);
+  text-shadow: 0 3px 0 rgba(14, 31, 50, 0.34);
 }
 
 .arena-wrap {
@@ -209,8 +209,8 @@ button {
   place-items: center;
   padding: 18px;
   background:
-    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.18), transparent 0 28%),
-    rgba(8, 24, 40, 0.34);
+    radial-gradient(circle at 50% 18%, rgba(147, 242, 203, 0.08), transparent 0 24%),
+    rgba(6, 18, 30, 0.48);
   backdrop-filter: blur(10px);
   z-index: 5;
 }
@@ -225,14 +225,14 @@ button {
   padding: 28px 20px 20px;
   border-radius: 34px;
   background:
-    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.42), transparent 0 36%),
-    linear-gradient(180deg, rgba(181, 222, 255, 0.98), rgba(93, 158, 215, 0.98));
-  border: 1px solid rgba(255, 255, 255, 0.46);
+    radial-gradient(circle at 50% 0%, rgba(164, 241, 214, 0.14), transparent 0 34%),
+    linear-gradient(180deg, rgba(48, 79, 112, 0.98), rgba(23, 45, 70, 0.98));
+  border: 1px solid rgba(203, 238, 255, 0.22);
   text-align: center;
   box-shadow:
-    inset 0 2px 0 rgba(255, 255, 255, 0.44),
-    inset 0 -16px 24px rgba(28, 86, 138, 0.16),
-    0 26px 54px rgba(1, 18, 34, 0.24);
+    inset 0 2px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -16px 24px rgba(8, 22, 37, 0.24),
+    0 26px 54px rgba(1, 18, 34, 0.28);
   overflow: hidden;
 }
 
@@ -241,8 +241,8 @@ button {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.28), transparent 0 16%),
-    radial-gradient(circle at 82% 14%, rgba(255, 255, 255, 0.2), transparent 0 14%);
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.08), transparent 0 16%),
+    radial-gradient(circle at 82% 14%, rgba(147, 242, 203, 0.08), transparent 0 14%);
   pointer-events: none;
 }
 
@@ -254,7 +254,7 @@ button {
   top: 12px;
   height: 4px;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0));
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(210, 245, 255, 0.7), rgba(255, 255, 255, 0));
   opacity: 0.95;
   pointer-events: none;
 }
@@ -266,7 +266,7 @@ button {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.28em;
-  color: #1f6ea1;
+  color: #9cefd0;
 }
 
 .overlay-card h1 {
@@ -277,7 +277,7 @@ button {
   line-height: 0.92;
   letter-spacing: 0.03em;
   color: #ffffff;
-  text-shadow: 0 5px 0 rgba(44, 101, 151, 0.28);
+  text-shadow: 0 5px 0 rgba(9, 23, 40, 0.34);
 }
 
 .overlay-body {
@@ -287,7 +287,7 @@ button {
   line-height: 1.45;
   font-size: 15px;
   font-weight: 800;
-  color: rgba(238, 248, 255, 0.94);
+  color: rgba(239, 247, 255, 0.86);
 }
 
 .overlay-stats {
@@ -301,16 +301,16 @@ button {
 .overlay-stats div {
   padding: 13px 10px;
   border-radius: 22px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(200, 231, 255, 0.16));
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(151, 211, 255, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.34),
-    0 8px 18px rgba(32, 86, 132, 0.12);
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 8px 18px rgba(7, 18, 28, 0.16);
 }
 
 .overlay-stats dt {
   font-size: 12px;
-  color: rgba(227, 245, 255, 0.84);
+  color: rgba(227, 245, 255, 0.72);
 }
 
 .overlay-stats dd {
@@ -319,31 +319,31 @@ button {
   font-size: 28px;
   font-weight: 600;
   color: #ffffff;
-  text-shadow: 0 3px 0 rgba(53, 109, 159, 0.2);
+  text-shadow: 0 3px 0 rgba(9, 23, 40, 0.22);
 }
 
 .overlay[data-phase="gameOver"] .overlay-card {
   background:
-    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.34), transparent 0 34%),
-    linear-gradient(180deg, rgba(255, 206, 168, 0.98), rgba(255, 132, 108, 0.98));
-  border-color: rgba(255, 241, 226, 0.5);
+    radial-gradient(circle at 50% 0%, rgba(255, 182, 157, 0.12), transparent 0 34%),
+    linear-gradient(180deg, rgba(77, 55, 74, 0.98), rgba(37, 26, 41, 0.98));
+  border-color: rgba(255, 214, 198, 0.18);
   box-shadow:
-    inset 0 2px 0 rgba(255, 255, 255, 0.42),
-    inset 0 -16px 24px rgba(196, 88, 52, 0.14),
-    0 28px 58px rgba(35, 10, 4, 0.22);
+    inset 0 2px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -16px 24px rgba(16, 9, 16, 0.26),
+    0 28px 58px rgba(18, 5, 7, 0.28);
 }
 
 .overlay[data-phase="gameOver"] .eyebrow {
-  color: #9a442f;
+  color: #ffb7a2;
 }
 
 .overlay[data-phase="gameOver"] .overlay-card h1 {
-  text-shadow: 0 5px 0 rgba(170, 76, 44, 0.24);
+  text-shadow: 0 5px 0 rgba(36, 14, 20, 0.28);
 }
 
 .overlay[data-phase="gameOver"] .overlay-stats div:first-child {
-  background: linear-gradient(180deg, rgba(255, 246, 241, 0.38), rgba(255, 213, 195, 0.2));
-  border-color: rgba(255, 243, 234, 0.44);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 171, 146, 0.08));
+  border-color: rgba(255, 193, 170, 0.18);
   transform: scale(1.03);
 }
 
@@ -358,20 +358,20 @@ button {
   margin: 0 0 16px;
   padding: 9px 15px;
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(224, 255, 245, 0.76), rgba(161, 245, 214, 0.48));
-  border: 1px solid rgba(225, 255, 245, 0.72);
-  color: #147054;
+  background: linear-gradient(180deg, rgba(147, 242, 203, 0.22), rgba(85, 210, 165, 0.16));
+  border: 1px solid rgba(147, 242, 203, 0.28);
+  color: #cffff0;
   font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.18em;
-  box-shadow: 0 12px 20px rgba(106, 219, 170, 0.12);
+  box-shadow: 0 12px 20px rgba(15, 43, 35, 0.16);
 }
 
 .overlay[data-phase="gameOver"] .best-badge {
-  background: linear-gradient(180deg, rgba(255, 250, 221, 0.82), rgba(255, 223, 140, 0.52));
-  border-color: rgba(255, 244, 208, 0.78);
-  color: #8a5c10;
-  box-shadow: 0 10px 24px rgba(255, 196, 120, 0.16);
+  background: linear-gradient(180deg, rgba(255, 171, 146, 0.2), rgba(255, 124, 102, 0.14));
+  border-color: rgba(255, 171, 146, 0.24);
+  color: #ffd8ca;
+  box-shadow: 0 10px 24px rgba(36, 15, 10, 0.16);
 }
 
 .best-badge-hidden {
@@ -384,15 +384,15 @@ button {
   min-height: 62px;
   border: 0;
   border-radius: 999px;
-  background: linear-gradient(180deg, #dbfff0, #83efc0 42%, #58d9a5 100%);
-  color: #0f5a3f;
+  background: linear-gradient(180deg, #bff8df, #78deb4 42%, #49b98b 100%);
+  color: #093b2b;
   font-family: "Fredoka", sans-serif;
   font-weight: 700;
   letter-spacing: 0.1em;
   box-shadow:
-    inset 0 2px 0 rgba(255, 255, 255, 0.42),
-    inset 0 -10px 14px rgba(46, 147, 109, 0.16),
-    0 18px 28px rgba(109, 229, 177, 0.24);
+    inset 0 2px 0 rgba(255, 255, 255, 0.34),
+    inset 0 -10px 14px rgba(33, 118, 86, 0.18),
+    0 18px 28px rgba(9, 31, 25, 0.22);
 }
 
 .start-button::before {
@@ -403,17 +403,17 @@ button {
   top: 8px;
   height: 34%;
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0));
   pointer-events: none;
 }
 
 .overlay[data-phase="gameOver"] .start-button {
-  background: linear-gradient(180deg, #ffe0d5, #ffab92 44%, #ff7c66 100%);
-  color: #6f2416;
+  background: linear-gradient(180deg, #ffd1c2, #ff9f86 44%, #ec6e59 100%);
+  color: #5f1f14;
   box-shadow:
-    inset 0 2px 0 rgba(255, 255, 255, 0.34),
-    inset 0 -10px 14px rgba(176, 64, 36, 0.16),
-    0 18px 30px rgba(255, 124, 102, 0.26);
+    inset 0 2px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -10px 14px rgba(148, 49, 26, 0.2),
+    0 18px 30px rgba(27, 10, 8, 0.22);
 }
 
 .controls {
