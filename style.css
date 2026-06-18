@@ -178,10 +178,10 @@ button {
 }
 
 .player {
-  width: 44px;
-  height: 44px;
-  background: url("./assets/player-flying.svg") center / 160% 160% no-repeat;
-  filter: drop-shadow(0 12px 18px rgba(12, 32, 24, 0.26));
+  width: 56px;
+  height: 56px;
+  background: url("./assets/player-flying.svg") center / contain no-repeat;
+  filter: drop-shadow(0 10px 14px rgba(12, 32, 24, 0.22));
 }
 
 .obstacles {
