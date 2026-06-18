@@ -208,8 +208,10 @@ button {
   display: grid;
   place-items: center;
   padding: 18px;
-  background: rgba(12, 30, 49, 0.42);
-  backdrop-filter: blur(8px);
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.18), transparent 0 28%),
+    rgba(8, 24, 40, 0.34);
+  backdrop-filter: blur(10px);
   z-index: 5;
 }
 
@@ -220,57 +222,76 @@ button {
 .overlay-card {
   position: relative;
   width: min(100%, 332px);
-  padding: 24px 18px 18px;
-  border-radius: 30px;
+  padding: 28px 20px 20px;
+  border-radius: 34px;
   background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.22), transparent 46%),
-    linear-gradient(180deg, rgba(65, 103, 142, 0.96), rgba(31, 60, 92, 0.98));
-  border: 1px solid rgba(255, 255, 255, 0.14);
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.42), transparent 0 36%),
+    linear-gradient(180deg, rgba(181, 222, 255, 0.98), rgba(93, 158, 215, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.46);
   text-align: center;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    0 24px 56px rgba(0, 0, 0, 0.28);
+    inset 0 2px 0 rgba(255, 255, 255, 0.44),
+    inset 0 -16px 24px rgba(28, 86, 138, 0.16),
+    0 26px 54px rgba(1, 18, 34, 0.24);
   overflow: hidden;
 }
 
 .overlay-card::before {
   content: "";
   position: absolute;
-  inset: 0 auto auto 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0));
-  opacity: 0.85;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.28), transparent 0 16%),
+    radial-gradient(circle at 82% 14%, rgba(255, 255, 255, 0.2), transparent 0 14%);
+  pointer-events: none;
+}
+
+.overlay-card::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 12px;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0));
+  opacity: 0.95;
+  pointer-events: none;
 }
 
 .eyebrow {
+  position: relative;
   margin: 0 0 12px;
   font-family: "Fredoka", sans-serif;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.28em;
-  color: #c5ffea;
+  color: #1f6ea1;
 }
 
 .overlay-card h1 {
+  position: relative;
   margin: 0;
   font-family: "Fredoka", sans-serif;
   font-size: clamp(34px, 10vw, 50px);
   line-height: 0.92;
   letter-spacing: 0.03em;
-  text-shadow: 0 5px 0 rgba(21, 46, 74, 0.26);
+  color: #ffffff;
+  text-shadow: 0 5px 0 rgba(44, 101, 151, 0.28);
 }
 
 .overlay-body {
+  position: relative;
   margin: 14px auto 18px;
   max-width: 18ch;
   line-height: 1.45;
   font-size: 15px;
   font-weight: 800;
-  color: rgba(246, 250, 255, 0.82);
+  color: rgba(238, 248, 255, 0.94);
 }
 
 .overlay-stats {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
@@ -278,16 +299,18 @@ button {
 }
 
 .overlay-stats div {
-  padding: 12px 10px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  padding: 13px 10px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(200, 231, 255, 0.16));
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    0 8px 18px rgba(32, 86, 132, 0.12);
 }
 
 .overlay-stats dt {
   font-size: 12px;
-  color: var(--muted);
+  color: rgba(227, 245, 255, 0.84);
 }
 
 .overlay-stats dd {
@@ -295,51 +318,60 @@ button {
   font-family: "Fredoka", sans-serif;
   font-size: 28px;
   font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 3px 0 rgba(53, 109, 159, 0.2);
 }
 
 .overlay[data-phase="gameOver"] .overlay-card {
   background:
-    radial-gradient(circle at top, rgba(255, 196, 120, 0.2), transparent 42%),
-    linear-gradient(180deg, rgba(76, 97, 140, 0.98), rgba(34, 49, 78, 0.98));
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.34), transparent 0 34%),
+    linear-gradient(180deg, rgba(255, 206, 168, 0.98), rgba(255, 132, 108, 0.98));
+  border-color: rgba(255, 241, 226, 0.5);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.42),
+    inset 0 -16px 24px rgba(196, 88, 52, 0.14),
+    0 28px 58px rgba(35, 10, 4, 0.22);
 }
 
 .overlay[data-phase="gameOver"] .eyebrow {
-  color: #ffe0b4;
+  color: #9a442f;
 }
 
 .overlay[data-phase="gameOver"] .overlay-card h1 {
-  text-shadow: 0 5px 0 rgba(54, 26, 20, 0.18);
+  text-shadow: 0 5px 0 rgba(170, 76, 44, 0.24);
 }
 
 .overlay[data-phase="gameOver"] .overlay-stats div:first-child {
-  background: rgba(255, 124, 102, 0.16);
-  border-color: rgba(255, 178, 152, 0.26);
-  transform: scale(1.02);
+  background: linear-gradient(180deg, rgba(255, 246, 241, 0.38), rgba(255, 213, 195, 0.2));
+  border-color: rgba(255, 243, 234, 0.44);
+  transform: scale(1.03);
 }
 
 .overlay[data-phase="gameOver"] .overlay-stats div:first-child dd {
   font-size: 34px;
-  color: #fff5f1;
+  color: #fffaf7;
 }
 
 .best-badge {
+  position: relative;
   display: inline-block;
   margin: 0 0 16px;
-  padding: 8px 14px;
+  padding: 9px 15px;
   border-radius: 999px;
-  background: rgba(147, 242, 203, 0.22);
-  border: 1px solid rgba(147, 242, 203, 0.4);
-  color: #d9fff0;
+  background: linear-gradient(180deg, rgba(224, 255, 245, 0.76), rgba(161, 245, 214, 0.48));
+  border: 1px solid rgba(225, 255, 245, 0.72);
+  color: #147054;
   font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.18em;
+  box-shadow: 0 12px 20px rgba(106, 219, 170, 0.12);
 }
 
 .overlay[data-phase="gameOver"] .best-badge {
-  background: rgba(255, 209, 132, 0.18);
-  border-color: rgba(255, 209, 132, 0.34);
-  color: #ffe6a8;
-  box-shadow: 0 10px 24px rgba(255, 196, 120, 0.12);
+  background: linear-gradient(180deg, rgba(255, 250, 221, 0.82), rgba(255, 223, 140, 0.52));
+  border-color: rgba(255, 244, 208, 0.78);
+  color: #8a5c10;
+  box-shadow: 0 10px 24px rgba(255, 196, 120, 0.16);
 }
 
 .best-badge-hidden {
@@ -347,28 +379,41 @@ button {
 }
 
 .start-button {
+  position: relative;
   width: 100%;
-  min-height: 60px;
+  min-height: 62px;
   border: 0;
   border-radius: 999px;
-  background: linear-gradient(180deg, #b2ffd8, #6ce2b3);
-  color: #0f3f2c;
+  background: linear-gradient(180deg, #dbfff0, #83efc0 42%, #58d9a5 100%);
+  color: #0f5a3f;
   font-family: "Fredoka", sans-serif;
   font-weight: 700;
   letter-spacing: 0.1em;
   box-shadow:
-    inset 0 2px 0 rgba(255, 255, 255, 0.28),
-    inset 0 -8px 12px rgba(46, 147, 109, 0.18),
-    0 16px 28px rgba(140, 240, 198, 0.22);
+    inset 0 2px 0 rgba(255, 255, 255, 0.42),
+    inset 0 -10px 14px rgba(46, 147, 109, 0.16),
+    0 18px 28px rgba(109, 229, 177, 0.24);
+}
+
+.start-button::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 8px;
+  height: 34%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0));
+  pointer-events: none;
 }
 
 .overlay[data-phase="gameOver"] .start-button {
-  background: linear-gradient(180deg, #ffb094, #ff7c66);
-  color: #42140c;
+  background: linear-gradient(180deg, #ffe0d5, #ffab92 44%, #ff7c66 100%);
+  color: #6f2416;
   box-shadow:
-    inset 0 2px 0 rgba(255, 255, 255, 0.24),
-    inset 0 -8px 12px rgba(176, 64, 36, 0.18),
-    0 16px 30px rgba(255, 124, 102, 0.24);
+    inset 0 2px 0 rgba(255, 255, 255, 0.34),
+    inset 0 -10px 14px rgba(176, 64, 36, 0.16),
+    0 18px 30px rgba(255, 124, 102, 0.26);
 }
 
 .controls {
