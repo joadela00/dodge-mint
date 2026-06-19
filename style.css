@@ -180,8 +180,8 @@ button {
 }
 
 .player {
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   background: url("./assets/player-flying.svg") center / contain no-repeat;
   filter: drop-shadow(0 10px 14px rgba(12, 32, 24, 0.22));
 }
