@@ -213,12 +213,12 @@
 
     if (mode === "idle") {
       overlayTitleEl.textContent = "DODGE MINT";
-      overlayBodyEl.textContent = "좌우 홀드로 피하고 최고기록을 깨세요.";
-      startButtonEl.textContent = "START RUN";
+      overlayBodyEl.textContent = "좌우를 누르고 살아남으세요.";
+      startButtonEl.textContent = "PLAY";
     } else {
       overlayTitleEl.textContent = "GAME OVER";
-      overlayBodyEl.textContent = "이번 기록을 넘어서 다시 버텨보세요.";
-      startButtonEl.textContent = "RUN AGAIN";
+      overlayBodyEl.textContent = "다시 들어가서 더 버텨보세요.";
+      startButtonEl.textContent = "TRY AGAIN";
     }
   }
 
@@ -361,7 +361,8 @@
 
     state.playerX = clamp(
       state.playerX + state.direction * PLAYER_SPEED * deltaSeconds,
-      0,      state.arenaWidth - PLAYER_SIZE,
+      0,
+      state.arenaWidth - PLAYER_SIZE,
     );
     renderPlayer();
 
