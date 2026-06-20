@@ -1,8 +1,18 @@
 .obstacle {
   border: 0 !important;
   border-radius: 0 !important;
-  background: url("./assets/Did.png") center / contain no-repeat !important;
+  background: none !important;
   background-color: transparent !important;
   box-shadow: none !important;
-  filter: drop-shadow(0 8px 12px rgba(9, 26, 43, 0.24)) !important;
+  filter: none !important;
+  overflow: visible !important;
+}
+
+.obstacle::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  background: url("./assets/Did.png") center / contain no-repeat;
+  filter: drop-shadow(0 8px 12px rgba(9, 26, 43, 0.24));
+  pointer-events: none;
 }
