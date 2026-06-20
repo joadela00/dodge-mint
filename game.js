@@ -3,7 +3,7 @@
   const HITBOX_SCALE = 0.8;
   const SPAWN_PROTECTION_MS = 1000;
   const PLAYER_SPEED = 320;
-  const PLAYER_SIZE = 44;
+  const PLAYER_SIZE = 60;
   const OBSTACLE_SIZE = 26;
   const RECENT_SPAWN_LIMIT = 4;
   const MINIMUM_SPAWN_SPACING = 58;
