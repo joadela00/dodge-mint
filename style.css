@@ -1,13 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@700;800;900&display=swap");
 
 :root {
-  --sky-top: #0f2740;
-  --sky-bottom: #061523;
-  --frame-top: #17395b;
-  --frame-bottom: #071728;
-  --panel-top: rgba(76, 98, 122, 0.62);
-  --panel-bottom: rgba(34, 52, 71, 0.78);
-  --panel-line: rgba(255, 255, 255, 0.14);
+  --sky-top: #030711;
+  --sky-bottom: #02040a;
+  --frame-top: #081426;
+  --frame-bottom: #030814;
+  --panel-top: rgba(52, 68, 96, 0.62);
+  --panel-bottom: rgba(13, 20, 35, 0.84);
+  --panel-line: rgba(196, 220, 255, 0.16);
   --text: #f7fbff;
   --muted: rgba(230, 241, 250, 0.76);
   --mint: #93f2cb;
@@ -15,7 +15,7 @@
   --coral: #ff7c66;
   --coral-soft: #ffab92;
   --coral-deep: #f3624d;
-  --navy-shadow: rgba(5, 20, 36, 0.3);
+  --navy-shadow: rgba(2, 8, 18, 0.42);
 }
 
 * {
@@ -35,7 +35,9 @@ body {
   font-family: "Nunito", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at 50% -18%, rgba(120, 202, 255, 0.14), transparent 34%),
+    radial-gradient(circle at 50% -10%, rgba(86, 126, 255, 0.12), transparent 28%),
+    radial-gradient(circle at 18% 12%, rgba(116, 214, 255, 0.08), transparent 18%),
+    radial-gradient(circle at 82% 16%, rgba(126, 110, 255, 0.08), transparent 20%),
     linear-gradient(180deg, var(--sky-top), var(--sky-bottom));
   overflow: hidden;
 }
@@ -45,10 +47,14 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at 16% 14%, rgba(153, 244, 214, 0.08), transparent 0 10%),
-    radial-gradient(circle at 80% 12%, rgba(255, 255, 255, 0.06), transparent 0 11%),
-    radial-gradient(circle at 28% 22%, rgba(140, 197, 255, 0.08), transparent 0 8%);
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.9) 0 1px, transparent 1.2px),
+    radial-gradient(circle at 74% 12%, rgba(255, 255, 255, 0.8) 0 1px, transparent 1.2px),
+    radial-gradient(circle at 28% 56%, rgba(182, 212, 255, 0.7) 0 1px, transparent 1.2px),
+    radial-gradient(circle at 86% 44%, rgba(255, 255, 255, 0.72) 0 1px, transparent 1.2px),
+    radial-gradient(circle at 54% 82%, rgba(190, 202, 255, 0.65) 0 1px, transparent 1.2px),
+    radial-gradient(circle at 20% 76%, rgba(255, 255, 255, 0.7) 0 1px, transparent 1.2px);
   pointer-events: none;
+  opacity: 0.55;
 }
 
 button {
@@ -66,8 +72,10 @@ button {
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 6px;
-  background: linear-gradient(180deg, var(--frame-top), var(--frame-bottom));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  background:
+    radial-gradient(circle at 50% -12%, rgba(91, 115, 255, 0.1), transparent 22%),
+    linear-gradient(180deg, var(--frame-top), var(--frame-bottom));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .hud {
@@ -82,12 +90,12 @@ button {
   border: 1px solid var(--panel-line);
   border-radius: 24px;
   background:
-    radial-gradient(circle at 20% 18%, rgba(147, 242, 203, 0.08), transparent 0 24%),
+    radial-gradient(circle at 20% 18%, rgba(164, 203, 255, 0.08), transparent 0 24%),
     linear-gradient(180deg, var(--panel-top), var(--panel-bottom));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.14),
-    inset 0 -12px 24px rgba(6, 15, 24, 0.28),
-    0 10px 18px rgba(4, 17, 31, 0.16);
+    inset 0 -12px 24px rgba(3, 7, 16, 0.44),
+    0 10px 18px rgba(1, 6, 16, 0.26);
 }
 
 .hud-card::after {
@@ -117,7 +125,7 @@ button {
   line-height: 0.95;
   letter-spacing: 0.01em;
   color: #ffffff;
-  text-shadow: 0 3px 0 rgba(9, 20, 34, 0.42);
+  text-shadow: 0 3px 0 rgba(4, 10, 20, 0.5);
 }
 
 .arena-wrap {
@@ -128,20 +136,20 @@ button {
 .arena {
   position: relative;
   width: 100%;
-  height: min(64dvh, 640px);
-  min-height: 320px;
+  height: min(70dvh, 720px);
+  min-height: 360px;
   border-radius: 30px;
   overflow: hidden;
-  border: 1px solid rgba(219, 241, 255, 0.18);
+  border: 1px solid rgba(196, 220, 255, 0.16);
   background:
-    radial-gradient(circle at 50% 8%, rgba(166, 224, 255, 0.2), transparent 0 30%),
-    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.06), transparent 0 18%),
-    radial-gradient(circle at 82% 24%, rgba(255, 255, 255, 0.05), transparent 0 16%),
-    linear-gradient(180deg, #224e76 0%, #173c5f 42%, #0f2f4d 100%);
+    radial-gradient(circle at 50% 8%, rgba(98, 132, 255, 0.14), transparent 0 28%),
+    radial-gradient(circle at 20% 24%, rgba(111, 211, 255, 0.08), transparent 0 20%),
+    radial-gradient(circle at 80% 20%, rgba(164, 138, 255, 0.08), transparent 0 18%),
+    linear-gradient(180deg, #091325 0%, #060d1c 52%, #030814 100%);
   box-shadow:
-    inset 0 3px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -18px 38px rgba(7, 25, 42, 0.24),
-    0 8px 20px rgba(0, 0, 0, 0.12);
+    inset 0 3px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -22px 40px rgba(2, 6, 14, 0.44),
+    0 10px 24px rgba(0, 0, 0, 0.2);
 }
 
 .arena::before {
@@ -149,10 +157,15 @@ button {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(transparent 96%, rgba(220, 241, 255, 0.055) 96%),
-    linear-gradient(90deg, transparent 96%, rgba(220, 241, 255, 0.045) 96%);
-  background-size: 100% 44px, 44px 100%;
-  opacity: 0.55;
+    radial-gradient(circle at 10% 14%, rgba(255, 255, 255, 0.9) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 28% 32%, rgba(176, 214, 255, 0.72) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 68% 18%, rgba(255, 255, 255, 0.84) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 84% 46%, rgba(200, 210, 255, 0.76) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 18% 72%, rgba(255, 255, 255, 0.7) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 62% 78%, rgba(148, 196, 255, 0.72) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 46% 56%, rgba(255, 255, 255, 0.62) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 76% 68%, rgba(255, 255, 255, 0.68) 0 1px, transparent 1.4px);
+  opacity: 0.6;
   pointer-events: none;
 }
 
@@ -162,10 +175,11 @@ button {
   inset: 0;
   border-radius: 30px;
   background:
-    radial-gradient(circle at 50% 102%, rgba(255, 255, 255, 0.09), transparent 0 24%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 18%),
+    radial-gradient(circle at 50% 104%, rgba(173, 194, 255, 0.08), transparent 0 24%);
   box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
-    inset 0 16px 30px rgba(255, 255, 255, 0.02);
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 20px 30px rgba(255, 255, 255, 0.015);
   pointer-events: none;
 }
 
@@ -182,7 +196,7 @@ button {
 .player {
   width: 60px;
   height: 60px;
-  background: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QCMRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAIAAIdpAAQAAAABAAAAWgAAAAAAAABIAAAAAQAAAEgAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAABQCgAwAEAAAAAQAABQAAAAAA/+0AOFBob3Rvc2hvcCAzLjAAOEJJTQQEAAAAAAAAOEJJTQQlAAAAAAAQ1B2M2Y8AsgTpgAmY7PhCfv/AABEIBQAFAAMBIgACEQEDEQH/xAAfAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgv/xAC1EAACAQMDAgQDBQUEBAAAAX0BAgMABBEFEiExQQYTUWEHInEUMoGRoQgjQrHBFVLR8CQzYnKCCQoWFxgZGiUmJygpKjQ1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4eLj5OXm5+jp6vHy8/T19vf4+fr/xAAfAQADAQEBAQEBAQEBAAAAAAAAAQIDBAUGBwgJCgv/xAC1EQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2wBDAAICAgICAgQCAgQFBAQEBQcFBQUFBwkHBwcHBwkLCQkJCQkJCwsLCwsLCwsNDQ0NDQ0PDw8PDxERERERERERERH/2wBDAQMDAwQEBAcEBAcSDAoMEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhL/3QAEAFD/2gAMAwEAAhEDEQA/AP38ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/2Q==") center / contain no-repeat;
+  background: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QCMRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAIAAIdpAAQAAAABAAAAWgAAAAAAAABIAAAAAQAAAEgAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAABQCgAwAEAAAAAQAABQAAAAAA/+0AOFBob3Rvc2hvcCAzLjAAOEJJTQQEAAAAAAAAOEJJTQQlAAAAAAAQ1B2M2Y8AsgTpgAmY7PhCfv/AABEIBQAFAAMBIgACEQEDEQH/xAAfAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgv/xAC1EAACAQMDAgQDBQUEBAAAAX0BAgMABBEFEiExQQYTUWEHInEUMoGRoQgjQrHBFVLR8CQzYnKCCQoWFxgZGiUmJygpKjQ1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4eLj5OXm5+jp6vHy8/T19vf4+fr/xAAfAQADAQEBAQEBAQEBAAAAAAAAAQIDBAUGBwgJCgv/xAC1EQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2wBDAAICAgICAgQCAgQFBAQEBQcFBQUFBwkHBwcHBwkLCQkJCQkJCwsLCwsLCwsNDQ0NDQ0PDw8PDxERERERERERERH/2wBDAQMDAwQEBAcEBAcSDAoMEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhL/3QAEAFD/2gAMAwEAAhEDEQA/AP38ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/2Q==") center / contain no-repeat;
   filter: drop-shadow(0 10px 14px rgba(12, 32, 24, 0.22));
 }
 
@@ -205,8 +219,8 @@ button {
   place-items: center;
   padding: 18px;
   background:
-    radial-gradient(circle at 50% 18%, rgba(147, 242, 203, 0.08), transparent 0 24%),
-    rgba(6, 18, 30, 0.48);
+    radial-gradient(circle at 50% 16%, rgba(116, 160, 255, 0.08), transparent 0 26%),
+    rgba(3, 7, 16, 0.54);
   backdrop-filter: blur(10px);
   z-index: 5;
 }
@@ -221,14 +235,14 @@ button {
   padding: 28px 20px 20px;
   border-radius: 34px;
   background:
-    radial-gradient(circle at 50% 0%, rgba(164, 241, 214, 0.14), transparent 0 34%),
-    linear-gradient(180deg, rgba(48, 79, 112, 0.98), rgba(23, 45, 70, 0.98));
-  border: 1px solid rgba(203, 238, 255, 0.22);
+    radial-gradient(circle at 50% 0%, rgba(127, 141, 255, 0.14), transparent 0 34%),
+    linear-gradient(180deg, rgba(22, 32, 54, 0.98), rgba(8, 14, 28, 0.98));
+  border: 1px solid rgba(203, 238, 255, 0.18);
   text-align: center;
   box-shadow:
-    inset 0 2px 0 rgba(255, 255, 255, 0.16),
-    inset 0 -16px 24px rgba(8, 22, 37, 0.24),
-    0 26px 54px rgba(1, 18, 34, 0.28);
+    inset 0 2px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -16px 24px rgba(2, 8, 18, 0.36),
+    0 26px 54px rgba(1, 8, 18, 0.32);
   overflow: hidden;
 }
 
@@ -237,8 +251,8 @@ button {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.08), transparent 0 16%),
-    radial-gradient(circle at 82% 14%, rgba(147, 242, 203, 0.08), transparent 0 14%);
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.05), transparent 0 16%),
+    radial-gradient(circle at 82% 14%, rgba(147, 242, 203, 0.06), transparent 0 14%);
   pointer-events: none;
 }
 
@@ -250,7 +264,7 @@ button {
   top: 12px;
   height: 4px;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(210, 245, 255, 0.7), rgba(255, 255, 255, 0));
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(210, 245, 255, 0.55), rgba(255, 255, 255, 0));
   opacity: 0.95;
   pointer-events: none;
 }
@@ -262,7 +276,7 @@ button {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.22em;
-  color: #9cefd0;
+  color: #b8cfff;
 }
 
 .overlay-card h1 {
@@ -273,7 +287,7 @@ button {
   line-height: 0.9;
   letter-spacing: 0.02em;
   color: #ffffff;
-  text-shadow: 0 5px 0 rgba(9, 23, 40, 0.34);
+  text-shadow: 0 5px 0 rgba(4, 10, 20, 0.34);
 }
 
 .overlay-body {
@@ -297,11 +311,11 @@ button {
 .overlay-stats div {
   padding: 13px 10px;
   border-radius: 22px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(151, 211, 255, 0.04));
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(114, 143, 199, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 8px 18px rgba(7, 18, 28, 0.16);
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 8px 18px rgba(4, 10, 18, 0.24);
 }
 
 .overlay-stats dt {
@@ -320,13 +334,13 @@ button {
 
 .overlay[data-phase="gameOver"] .overlay-card {
   background:
-    radial-gradient(circle at 50% 0%, rgba(255, 182, 157, 0.12), transparent 0 34%),
-    linear-gradient(180deg, rgba(77, 55, 74, 0.98), rgba(37, 26, 41, 0.98));
-  border-color: rgba(255, 214, 198, 0.18);
+    radial-gradient(circle at 50% 0%, rgba(255, 138, 138, 0.14), transparent 0 34%),
+    linear-gradient(180deg, rgba(41, 22, 38, 0.98), rgba(18, 10, 20, 0.98));
+  border-color: rgba(255, 214, 198, 0.14);
   box-shadow:
-    inset 0 2px 0 rgba(255, 255, 255, 0.12),
-    inset 0 -16px 24px rgba(16, 9, 16, 0.26),
-    0 28px 58px rgba(18, 5, 7, 0.28);
+    inset 0 2px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -16px 24px rgba(10, 4, 10, 0.32),
+    0 28px 58px rgba(10, 4, 10, 0.32);
 }
 
 .overlay[data-phase="gameOver"] .eyebrow {
@@ -338,8 +352,8 @@ button {
 }
 
 .overlay[data-phase="gameOver"] .overlay-stats div:first-child {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 171, 146, 0.08));
-  border-color: rgba(255, 193, 170, 0.18);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 171, 146, 0.08));
+  border-color: rgba(255, 193, 170, 0.16);
   transform: scale(1.03);
 }
 
@@ -354,20 +368,20 @@ button {
   margin: 0 0 16px;
   padding: 9px 15px;
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(147, 242, 203, 0.22), rgba(85, 210, 165, 0.16));
-  border: 1px solid rgba(147, 242, 203, 0.28);
+  background: linear-gradient(180deg, rgba(147, 242, 203, 0.18), rgba(85, 210, 165, 0.14));
+  border: 1px solid rgba(147, 242, 203, 0.22);
   color: #cffff0;
   font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.14em;
-  box-shadow: 0 12px 20px rgba(15, 43, 35, 0.16);
+  box-shadow: 0 12px 20px rgba(8, 20, 18, 0.22);
 }
 
 .overlay[data-phase="gameOver"] .best-badge {
-  background: linear-gradient(180deg, rgba(255, 171, 146, 0.2), rgba(255, 124, 102, 0.14));
-  border-color: rgba(255, 171, 146, 0.24);
+  background: linear-gradient(180deg, rgba(255, 171, 146, 0.18), rgba(255, 124, 102, 0.14));
+  border-color: rgba(255, 171, 146, 0.22);
   color: #ffd8ca;
-  box-shadow: 0 10px 24px rgba(36, 15, 10, 0.16);
+  box-shadow: 0 10px 24px rgba(20, 8, 8, 0.2);
 }
 
 .best-badge-hidden {
@@ -380,16 +394,16 @@ button {
   min-height: 62px;
   border: 0;
   border-radius: 999px;
-  background: linear-gradient(180deg, #bff8df, #78deb4 42%, #49b98b 100%);
-  color: #093b2b;
+  background: linear-gradient(180deg, #cfe0ff, #8baeff 42%, #5f83dc 100%);
+  color: #081528;
   font-family: "Fredoka", sans-serif;
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.08em;
   box-shadow:
-    inset 0 2px 0 rgba(255, 255, 255, 0.34),
-    inset 0 -10px 14px rgba(33, 118, 86, 0.18),
-    0 18px 28px rgba(9, 31, 25, 0.22);
+    inset 0 2px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -10px 14px rgba(43, 62, 128, 0.18),
+    0 18px 28px rgba(4, 10, 22, 0.3);
 }
 
 .start-button::before {
@@ -400,7 +414,7 @@ button {
   top: 8px;
   height: 34%;
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0));
   pointer-events: none;
 }
 
@@ -421,15 +435,15 @@ button {
 
 .control-button {
   min-height: 80px;
-  border: 1px solid rgba(151, 240, 208, 0.18);
+  border: 1px solid rgba(162, 184, 255, 0.18);
   border-radius: 26px;
   background:
-    radial-gradient(circle at 50% 18%, rgba(147, 242, 203, 0.1), transparent 0 24%),
-    linear-gradient(180deg, rgba(61, 82, 102, 0.98), rgba(25, 39, 53, 0.99));
+    radial-gradient(circle at 50% 18%, rgba(162, 184, 255, 0.1), transparent 0 24%),
+    linear-gradient(180deg, rgba(36, 49, 78, 0.98), rgba(10, 17, 31, 0.99));
   box-shadow:
-    inset 0 2px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -12px 18px rgba(5, 11, 18, 0.34),
-    0 12px 18px rgba(6, 18, 33, 0.22);
+    inset 0 2px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -12px 18px rgba(2, 6, 14, 0.42),
+    0 12px 18px rgba(2, 8, 18, 0.26);
   font-family: "Fredoka", sans-serif;
   font-size: 18px;
   font-weight: 600;
@@ -440,15 +454,15 @@ button {
 }
 
 .control-button.active {
-  border-color: rgba(166, 245, 217, 0.38);
+  border-color: rgba(181, 204, 255, 0.32);
   background:
-    radial-gradient(circle at 50% 16%, rgba(207, 255, 236, 0.16), transparent 0 26%),
-    linear-gradient(180deg, rgba(85, 153, 123, 0.98), rgba(43, 95, 72, 0.99));
+    radial-gradient(circle at 50% 16%, rgba(219, 231, 255, 0.14), transparent 0 26%),
+    linear-gradient(180deg, rgba(72, 101, 162, 0.98), rgba(24, 41, 72, 0.99));
   box-shadow:
-    inset 0 2px 0 rgba(255, 255, 255, 0.16),
-    inset 0 -12px 18px rgba(15, 48, 34, 0.28),
-    0 12px 18px rgba(6, 18, 33, 0.22);
-  color: #f6fff9;
+    inset 0 2px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -12px 18px rgba(6, 16, 32, 0.28),
+    0 12px 18px rgba(2, 8, 18, 0.26);
+  color: #f7fbff;
 }
 
 .control-button:disabled {
@@ -471,8 +485,8 @@ button {
   }
 
   .arena {
-    min-height: 280px;
-    height: min(58dvh, 520px);
+    min-height: 300px;
+    height: min(62dvh, 560px);
   }
 
   .overlay-card h1 {
@@ -496,8 +510,8 @@ button {
   }
 
   .arena {
-    min-height: 260px;
-    height: min(54dvh, 460px);
+    min-height: 280px;
+    height: min(58dvh, 500px);
   }
 
   .control-button {
@@ -515,8 +529,8 @@ button {
   }
 
   .arena {
-    min-height: 220px;
-    height: min(50dvh, 400px);
+    min-height: 240px;
+    height: min(54dvh, 430px);
   }
 
   .overlay-card {
