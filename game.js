@@ -1,6 +1,6 @@
 (function () {
   const STORAGE_KEY = "dodge-mint-high-score-ms";
-  const HITBOX_SCALE = 0.8;
+  const HITBOX_SCALE = 0.72;
   const SPAWN_PROTECTION_MS = 1000;
   const PLAYER_SPEED = 320;
   const PLAYER_SIZE = 60;
