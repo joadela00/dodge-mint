@@ -1,8 +1,12 @@
 .player {
   width: 60px !important;
   height: 60px !important;
-  background: url("./assets/Player.png") center / contain no-repeat !important;
+  background: url("./assets/IMG_1218.png") center / contain no-repeat !important;
   filter: drop-shadow(0 10px 14px rgba(12, 32, 24, 0.22)) !important;
   background-color: transparent !important;
   mix-blend-mode: normal !important;
+}
+
+.player.is-moving {
+  background-image: url("./assets/IMG_1219.png") !important;
 }
