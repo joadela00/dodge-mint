@@ -18,7 +18,7 @@
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: contain !important;
-  transform: scale(1.2);
+  transform: scale(1.5);
   transform-origin: center;
   filter: drop-shadow(0 8px 12px rgba(9, 26, 43, 0.24));
   pointer-events: none;
