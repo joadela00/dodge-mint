@@ -182,6 +182,7 @@
 
   function renderPlayer() {
     playerEl.style.transform = "translate3d(" + state.playerX + "px, " + state.playerY + "px, 0)";
+    playerEl.classList.toggle("is-moving", state.phase === "playing" && state.direction !== 0);
   }
 
   function renderObstacle(obstacle) {
@@ -235,25 +236,30 @@
   function syncDirectionFromHeld() {
     if (state.phase !== "playing") {
       state.direction = 0;
+      renderPlayer();
       return;
     }
 
     if (state.heldLeft && state.heldRight) {
       state.direction = state.lastHeldDirection;
+      renderPlayer();
       return;
     }
 
     if (state.heldLeft) {
       state.direction = -1;
+      renderPlayer();
       return;
     }
 
     if (state.heldRight) {
       state.direction = 1;
+      renderPlayer();
       return;
     }
 
     state.direction = 0;
+    renderPlayer();
   }
 
   function startGame() {
@@ -287,6 +293,7 @@
     saveHighScoreMs(state.elapsedMs);
     updateScoreDisplays(true);
     setControlState(true);
+    renderPlayer();
     setOverlay("gameOver", isNewBest);
     cancelLoop();
   }
