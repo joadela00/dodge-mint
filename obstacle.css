@@ -1,18 +1,23 @@
 .obstacle {
-  border: 0 !important;
+  border: none !important;
   border-radius: 0 !important;
-  background: none !important;
+  background-image: none !important;
   background-color: transparent !important;
   box-shadow: none !important;
   filter: none !important;
+  outline: none !important;
   overflow: visible !important;
 }
 
 .obstacle::before {
   content: "";
   position: absolute;
-  inset: -10px;
-  background: url("./assets/IMG_1202.png") center / contain no-repeat;
+  inset: -12px;
+  background-color: transparent !important;
+  background-image: url("./assets/IMG_1202.png") !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 120% 120% !important;
   filter: drop-shadow(0 8px 12px rgba(9, 26, 43, 0.24));
   pointer-events: none;
 }
