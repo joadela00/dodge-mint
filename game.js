@@ -1,6 +1,7 @@
 (function () {
   const STORAGE_KEY = "dodge-mint-high-score-ms";
-  const HITBOX_SCALE = 0.72;
+  const PLAYER_HITBOX_SCALE = 0.58;
+  const OBSTACLE_HITBOX_SCALE = 0.68;
   const SPAWN_PROTECTION_MS = 1000;
   const PLAYER_SPEED = 320;
   const PLAYER_SIZE = 60;
@@ -331,13 +332,13 @@
 
     const playerRect = getScaledRect(
       { x: state.playerX, y: state.playerY, width: PLAYER_SIZE, height: PLAYER_SIZE },
-      HITBOX_SCALE,
+      PLAYER_HITBOX_SCALE,
     );
 
     for (const obstacle of state.obstacles) {
       const obstacleRect = getScaledRect(
         { x: obstacle.x, y: obstacle.y, width: obstacle.size, height: obstacle.size },
-        HITBOX_SCALE,
+        OBSTACLE_HITBOX_SCALE,
       );
 
       if (overlaps(playerRect, obstacleRect)) {
