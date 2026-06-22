@@ -8,6 +8,8 @@
   const OBSTACLE_SIZE = 26;
   const RECENT_SPAWN_LIMIT = 4;
   const MINIMUM_SPAWN_SPACING = 58;
+  const METEOR_MIN_DELAY_MS = 9000;
+  const METEOR_MAX_DELAY_MS = 18000;
 
   const scoreEl = document.getElementById("score");
   const highScoreEl = document.getElementById("high-score");
@@ -44,6 +46,9 @@
     lastHeldDirection: 0,
     displayScore: -1,
     displayHighScore: -1,
+    meteorTimeoutId: null,
+    meteorLayerEl: null,
+    meteorEl: null,
   };
 
   function loadHighScoreMs() {
@@ -100,6 +105,10 @@
 
   function clamp(value, min, max) {
     return Math.min(max, Math.max(min, value));
+  }
+
+  function getRandomRange(min, max) {
+    return min + Math.random() * (max - min);
   }
 
   function getSpawnInterval(seconds) {
@@ -261,6 +270,65 @@
 
     state.direction = 0;
     renderPlayer();
+  }
+
+  function ensureMeteorLayer() {
+    if (state.meteorLayerEl && state.meteorEl) {
+      return;
+    }
+
+    const meteorLayerEl = document.createElement("div");
+    const meteorEl = document.createElement("div");
+
+    meteorLayerEl.className = "meteor-layer";
+    meteorEl.className = "meteor";
+    meteorLayerEl.appendChild(meteorEl);
+    arenaEl.insertBefore(meteorLayerEl, playerEl);
+
+    meteorEl.addEventListener("animationend", function () {
+      meteorEl.classList.remove("is-active");
+      scheduleNextMeteor();
+    });
+
+    state.meteorLayerEl = meteorLayerEl;
+    state.meteorEl = meteorEl;
+  }
+
+  function scheduleNextMeteor() {
+    if (!state.meteorEl) {
+      return;
+    }
+
+    if (state.meteorTimeoutId !== null) {
+      clearTimeout(state.meteorTimeoutId);
+    }
+
+    state.meteorTimeoutId = window.setTimeout(triggerMeteor, getRandomRange(METEOR_MIN_DELAY_MS, METEOR_MAX_DELAY_MS));
+  }
+
+  function triggerMeteor() {
+    if (!state.meteorEl) {
+      return;
+    }
+
+    const width = state.arenaWidth || arenaEl.clientWidth;
+    const height = state.arenaHeight || arenaEl.clientHeight;
+    const startX = getRandomRange(width * 0.62, width * 0.9);
+    const startY = getRandomRange(height * 0.06, height * 0.24);
+    const travelX = -getRandomRange(width * 0.22, width * 0.34);
+    const travelY = getRandomRange(height * 0.16, height * 0.26);
+    const duration = Math.round(getRandomRange(900, 1400));
+
+    state.meteorEl.style.setProperty("--meteor-start-x", Math.round(startX) + "px");
+    state.meteorEl.style.setProperty("--meteor-start-y", Math.round(startY) + "px");
+    state.meteorEl.style.setProperty("--meteor-travel-x", Math.round(travelX) + "px");
+    state.meteorEl.style.setProperty("--meteor-travel-y", Math.round(travelY) + "px");
+    state.meteorEl.style.setProperty("--meteor-duration", duration + "ms");
+
+    state.meteorEl.classList.remove("is-active");
+    void state.meteorEl.offsetWidth;
+    state.meteorEl.classList.add("is-active");
+    state.meteorTimeoutId = null;
   }
 
   function startGame() {
@@ -473,6 +541,7 @@
 
   function init() {
     syncArenaMetrics();
+    ensureMeteorLayer();
     renderPlayer();
     updateScoreDisplays(true);
     setOverlay("idle", false);
@@ -480,6 +549,7 @@
     bindControl(leftButtonEl, -1);
     bindControl(rightButtonEl, 1);
     bindKeyboard();
+    scheduleNextMeteor();
 
     startButtonEl.addEventListener("click", startGame);
     window.addEventListener("resize", syncArenaMetrics);
