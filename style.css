@@ -492,6 +492,8 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .control-button {
@@ -511,7 +513,10 @@ button {
   letter-spacing: 0.1em;
   color: rgba(239, 248, 255, 0.92);
   touch-action: none;
+  -webkit-user-select: none;
   user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
 }
 
 .control-button.active {
