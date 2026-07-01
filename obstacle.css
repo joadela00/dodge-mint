@@ -12,13 +12,13 @@
 .obstacle::before {
   content: "";
   position: absolute;
-  inset: -6px;
+  inset: -10px;
   background-color: transparent !important;
   background-image: url("./assets/IMG_1222.png") !important;
-  background-position: center !important;
+  background-position: center center !important;
   background-repeat: no-repeat !important;
-  background-size: contain !important;
-  transform: scale(1.5);
+  background-size: cover !important;
+  transform: scale(1.35);
   transform-origin: center;
   filter: drop-shadow(0 8px 12px rgba(9, 26, 43, 0.24));
   pointer-events: none;
